@@ -22,26 +22,6 @@ Himstack Pvt Ltd is a technology company focused on building innovative SaaS sol
 * Cross-device compatibility
 * Secure and maintainable codebase
 
-## Getting Started
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Run the development server:
-
-```bash
-npm run dev
-```
-
-Build for production:
-
-```bash
-npm run build
-npm start
-```
 
 ## Services
 
