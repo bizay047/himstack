@@ -1,0 +1,131 @@
+
+/* Navbar Styles */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: rgba(11, 18, 32, 0.95);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  z-index: 100;
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.5px;
+}
+
+.brand-logo {
+  height: 40px;
+  width: auto;
+  border-radius: 50%;
+  background: #fff;
+  padding: 2px;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  padding: 5px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  transition: all 240ms;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0; padding: 0;
+  gap: 1rem;
+}
+
+.nav-link {
+  color: #e2e8f0;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  transition: all 240ms ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.nav-link:hover, .nav-link.current {
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+}
+
+.chevron {
+  width: 16px; height: 16px;
+  fill: currentColor;
+  transition: transform 240ms ease;
+}
+
+/* Dropdown */
+.nav-item { position: relative; }
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  background: rgba(11, 18, 32, 0.95);
+  backdrop-filter: blur(16px);
+  min-width: 240px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 0.5rem 0;
+  margin: 0; list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.nav-item:hover .dropdown-menu,
+.nav-item:focus-within .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav-item:hover .chevron {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 0.75rem 1.25rem;
+  color: #cbd5e1;
+  transition: all 200ms;
+  font-size: 0.9rem;
+}
+
+.dropdown-menu a:hover {
+  background: rgba(37, 99, 235, 0.1);
+  color: #fff;
+  padding-left: 1.5rem;
+}

@@ -1,0 +1,80 @@
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .hero-text h1 { font-size: 3rem; }
+  .hero-content { gap: 2rem; }
+}
+
+@media (max-width: 780px) {
+  /* Navbar */
+  .nav-toggle { display: flex; }
+  
+  .nav-menu {
+    position: fixed;
+    top: 80px; left: 0; right: 0; bottom: 0;
+    background: rgba(11, 18, 32, 0.98);
+    backdrop-filter: blur(10px);
+    padding: 2rem 1.5rem;
+    transform: translateX(100%);
+    transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    overflow-y: auto;
+  }
+  
+  .nav-menu.active { transform: translateX(0); }
+  body.nav-open { overflow: hidden; }
+  
+  .nav-list { flex-direction: column; gap: 0.5rem; }
+  .nav-link { font-size: 1.1rem; padding: 1rem; }
+  
+  .dropdown-menu {
+    position: static;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: none;
+    box-shadow: none;
+    background: rgba(255,255,255,0.03);
+    margin-top: 0.5rem;
+    border: none;
+  }
+  
+  .nav-item.active .dropdown-menu { display: block; }
+  .nav-item.active .chevron { transform: rotate(180deg); }
+
+  /* Hero */
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .hero-text h1 { font-size: 2.5rem; }
+  .hero-text p { margin: 0 auto 2rem; }
+  .hero-actions { justify-content: center; }
+  
+  .hero-image { order: -1; margin-bottom: 2rem; }
+  .hero-image-circle { max-width: 300px; }
+
+  /* Social Icons (Bottom Bar - riteshchauhan style) */
+  .social-floating {
+    top: auto; right: 0; bottom: 12px; left: 0;
+    transform: none;
+    flex-direction: row;
+    justify-content: center;
+    background: transparent;
+    padding: 0.25rem;
+    gap: 1rem;
+    border: none;
+    box-shadow: none;
+  }
+  
+  .social { width: 40px; height: 40px; }
+  .social:hover { transform: scale(1.1); }
+  
+  .page-wrapper { padding-bottom: 80px; } /* Space for bottom nav */
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 { font-size: 2rem; }
+  .hero-actions { flex-direction: column; width: 100%; }
+  .hero-actions .btn { width: 100%; }
+}
