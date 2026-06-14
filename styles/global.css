@@ -269,6 +269,10 @@ h6 {
   padding: 0;
 }
 
+.nav-menu-header {
+  display: none;
+}
+
 .nav-link {
   font-size: 0.92rem;
   font-weight: 750;
@@ -940,8 +944,9 @@ h6 {
 }
 
 .member-photo {
-  flex: 0 0 238px;
-  height: 238px;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -1157,6 +1162,8 @@ h6 {
   background: var(--surface-strong);
   color: var(--text);
   outline: none;
+  font-family: inherit;
+  font-size: 16px;
 }
 
 .form-card textarea {
@@ -1219,35 +1226,132 @@ h6 {
 @media (max-width: 992px) {
   .nav-toggle {
     display: inline-block;
+    position: relative;
+    z-index: 1001;
+  }
+
+  /* Backdrop Blur Overlay for Sidebar */
+  .site-header::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 11, 19, 0.42);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+  }
+
+  .site-header.menu-open::before {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .nav-menu {
     position: fixed;
-    top: 76px;
-    left: 16px;
-    right: 16px;
-    display: grid;
-    gap: 0;
-    padding: 14px;
-    border: 1px solid var(--line);
-    border-radius: 12px;
+    top: 0;
+    right: 0;
+    width: 70vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px 24px 32px;
+    border: none;
+    border-left: 1px solid var(--line);
+    border-radius: 0;
     background: var(--surface-strong);
     box-shadow: var(--shadow);
-    transform: translateY(-16px);
-    opacity: 0;
+    transform: translateX(100%);
     visibility: hidden;
-    transition: all 0.25s ease;
+    z-index: 1000;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
   }
 
   .nav-menu.active {
-    transform: translateY(0);
-    opacity: 1;
+    transform: translateX(0);
     visibility: visible;
   }
 
+  .nav-menu-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding-bottom: 10px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-menu-logo {
+    width: 54px;
+    height: 54px;
+    display: grid;
+    place-items: center;
+    background: transparent;
+  }
+
+  .nav-menu-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .nav-menu-title {
+    font-family: var(--display);
+    font-size: 1.12rem;
+    font-weight: 900;
+    color: var(--heading);
+  }
+
+  .nav-menu li {
+    width: 100%;
+  }
+
   .nav-menu li a {
-    display: block;
-    padding: 13px 10px;
+    display: flex;
+    align-items: center;
+    padding: 10px 18px;
+    font-size: 1.02rem;
+    font-weight: 750;
+    color: var(--muted);
+    border-radius: var(--radius);
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav-menu li a::after {
+    display: none;
+  }
+
+  .nav-menu li a.active {
+    color: var(--primary);
+    background: rgba(15, 91, 216, 0.08);
+  }
+
+  /* Glowing Left Bar Indicator for Mobile Sidebar Active Item */
+  .nav-menu li a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 25%;
+    bottom: 25%;
+    width: 4px;
+    background: linear-gradient(180deg, var(--primary), var(--primary-2));
+    border-radius: 0 4px 4px 0;
+    transform: scaleY(0);
+    transition: transform 0.25s ease;
+  }
+
+  .nav-menu li a.active::before {
+    transform: scaleY(1);
   }
 
   .hero-grid,
@@ -1309,7 +1413,6 @@ h6 {
   .stats-grid,
   .cards-grid,
   .services-grid,
-  .team-grid,
   .blog-grid,
   .values-grid,
   .contact-email-grid,
@@ -1318,6 +1421,63 @@ h6 {
   .preview-grid,
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+
+  .service-card,
+  .blog-card,
+  .job-card {
+    max-width: 360px;
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  /* Team 2-Column Responsive Layout on Mobile */
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .team-card {
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+  }
+
+  .member-info {
+    padding: 12px 10px;
+    min-height: auto;
+  }
+
+  .member-info h3 {
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+
+  .role {
+    font-size: 0.76rem;
+    min-height: auto;
+    margin-bottom: 10px;
+  }
+
+  .member-socials {
+    gap: 6px;
+  }
+
+  .member-socials a {
+    width: 28px;
+    height: 28px;
+  }
+
+  .member-socials img {
+    width: 13px;
+    height: 13px;
+  }
+
+  .initials {
+    width: 62px;
+    height: 62px;
+    font-size: 1.18rem;
+    border-radius: 14px;
   }
 
   .dash-body {
@@ -1456,6 +1616,20 @@ h6 {
     transform: translate(-50%, -50%) scale(1.8);
     opacity: 0;
     border-color: var(--primary-2);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
   }
 }
 

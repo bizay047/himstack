@@ -7,6 +7,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const navMenu = document.querySelector(".nav-menu");
   const navLinks = document.querySelectorAll(".nav-link");
 
+  if (navMenu) {
+    const isPagesFolder = window.location.pathname.toLowerCase().includes("/pages/");
+    const basePath = isPagesFolder ? "../" : "./";
+    const menuHeader = document.createElement("li");
+    menuHeader.className = "nav-menu-header";
+    menuHeader.innerHTML = `
+      <div class="nav-menu-logo">
+        <img src="${basePath}logo/logoHimstack.png" alt="HimStack logo">
+      </div>
+      <div class="nav-menu-title">HimStack Pvt Ltd</div>
+    `;
+    navMenu.prepend(menuHeader);
+  }
+
   root.dataset.theme = "light";
 
   // Click Spark Effect
