@@ -2,7 +2,7 @@
 
 **Smart India for Smart Tourists**
 
-Himstack Pvt Ltd is a technology company focused on building innovative SaaS solutions, ERP platforms, EdTech systems, and digital transformation tools for educational institutions and businesses.
+Himstack Pvt Ltd is a Startup where technology company focused on building innovative SaaS solutions, ERP platforms, EdTech systems, and digital transformation tools for educational institutions and businesses.
 
 ## Tech Stack
 
